@@ -12,7 +12,7 @@ export default function PDFMonitor() {
     const [sortingType, setSortingType] = useState(1) //1: Ascending || -1: Descending
 
     useEffect(() => {
-        fetch('http://localhost:8081/pdf-statistics')
+        fetch('https://online-library-system-api.onrender.com/pdf-statistics')
             .then(res => res.json())
             .then(pdfStats => setPdfStats(pdfStats))
             .catch(err => console.log(err));
