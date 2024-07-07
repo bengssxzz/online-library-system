@@ -16,7 +16,7 @@ export default function PDFManagement() {
 
     useEffect(() => {
 
-        fetch('http://localhost:8081/all-categ', {
+        fetch('https://online-library-system-api.onrender.com/all-categ', {
             method: "get",
             headers: {
                 "ngrok-skip-browser-warning": "89420",
@@ -35,7 +35,7 @@ export default function PDFManagement() {
     }, [deleted, edited]);
 
     useEffect(() => {
-        fetch('http://localhost:8081/pdf-statistics', {
+        fetch('https://online-library-system-api.onrender.com/pdf-statistics', {
             method: "get",
         })
             .then(res => res.json())
@@ -62,7 +62,7 @@ export default function PDFManagement() {
 
     const deleteButton = (e, title) => {
         e.preventDefault();
-        fetch('http://localhost:8081/delete-pdf', {
+        fetch('https://online-library-system-api.onrender.com/delete-pdf', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export default function PDFManagement() {
             editButton();
             return;
         }
-        fetch('http://localhost:8081/edit-pdf', {
+        fetch('https://online-library-system-api.onrender.com/edit-pdf', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

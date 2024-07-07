@@ -9,14 +9,14 @@ export default function Monitor() {
     const [studData, setStud] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8081/reg-list')
+        fetch('https://online-library-system-api.onrender.com/reg-list')
             .then(res => res.json())
             .then(credData => setCred(credData))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:8081/student-list')
+        fetch('https://online-library-system-api.onrender.com/student-list')
             .then(res => res.json())
             .then(studData => setStud(studData))
             .catch(err => console.log(err));
@@ -39,20 +39,20 @@ export default function Monitor() {
                         middlename: row["Middle Name"],
                     }));
 
-                    fetch('http://localhost:8081/upload-students', {
+                    fetch('https://online-library-system-api.onrender.com/upload-students', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(data),
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.status);
-                    })
-                    .catch((error) => {
-                        alert('Error uploading data');
-                    });
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.status);
+                        })
+                        .catch((error) => {
+                            alert('Error uploading data');
+                        });
                 },
             });
         } else {
@@ -68,7 +68,7 @@ export default function Monitor() {
     ];
 
     const auditExport = (e) => {
-        fetch("http://localhost:8081/audit-export")
+        fetch("https://online-library-system-api.onrender.com/audit-export")
     }
 
     return (
@@ -80,7 +80,7 @@ export default function Monitor() {
                 <div className="tw-flex sm:tw-flex-wrap tw-flex-col tw-w-full md:tw-mx-20 md:tw-mt-[100px] sm:tw-m-5 tw-align-top">
                     <label className="tw-text-center tw-text-5xl tw-pb-[100px]">Enrolled Students</label>
                     <div className="tw-flex tw-mb-4 tw-items-center">
-                        <input 
+                        <input
                             className="file:tw-rounded-l-md tw-block file:tw-h-[40px] file:tw-border-none tw-outline-none tw-rounded-md tw-ring-1
                             tw-ring-gray-300 focus:tw-ring-gray-500 file:tw-bg-dark-blue file:tw-px-3 file:tw-text-white
                             focus:tw-ring-1 focus:tw-shadow-lg file:hover:tw-bg-light-steel file:tw-duration-500 file:hover:tw-cursor-pointer"
@@ -88,7 +88,7 @@ export default function Monitor() {
                             accept=".csv"
                             onChange={handleFileUpload}
                         />
-                        <CSVLink 
+                        <CSVLink
                             headers={csvHeaders}
                             data={studData}
                             filename={"students.csv"}
