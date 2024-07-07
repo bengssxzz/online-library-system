@@ -56,12 +56,12 @@ export default function Category({ search, category }) {
             body: JSON.stringify({ Title: title })
         });
 
-        // window.open('http://localhost:8081/uploads/' + pdfdestination);
+        // window.open('https://online-library-system-api.onrender.com/uploads/' + pdfdestination);
     }
 
     // const DownloadPDF = (pdfdestination, title) => {
 
-    //     fetch('http://localhost:8081/downloadAdd', {
+    //     fetch('https://online-library-system-api.onrender.com/downloadAdd', {
     //         method: "POST",
     //         headers: {
     //             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function Category({ search, category }) {
     //         body: JSON.stringify({Title: title})
     //     });
 
-    //     axios.get('http://localhost:8081/uploads/' + pdfdestination, {
+    //     axios.get('https://online-library-system-api.onrender.com/uploads/' + pdfdestination, {
     //         responseType: 'blob',
     //         headers: {
     //             'Content-Type': 'application/pdf',
