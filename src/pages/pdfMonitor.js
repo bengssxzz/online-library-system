@@ -3,34 +3,34 @@ import Sidebar from "../components/sidebar"
 import Pagination from '../components/Pagination';
 
 export default function PDFMonitor() {
-    const [pdfStats, setPdfStats] = useState([]);
+    // const [pdfStats, setPdfStats] = useState([]);
 
-    const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentpage] = useState(1);
-    const [postsPerPage, setPostsperpage] = useState(5); //Post per page
+    // const [loading, setLoading] = useState(false);
+    // const [currentPage, setCurrentpage] = useState(1);
+    // const [postsPerPage, setPostsperpage] = useState(5); //Post per page
 
-    const [sortingType, setSortingType] = useState(1) //1: Ascending || -1: Descending
+    // const [sortingType, setSortingType] = useState(1) //1: Ascending || -1: Descending
 
-    useEffect(() => {
-        fetch('https://online-library-system-api.onrender.com/pdf-statistics')
-            .then(res => res.json())
-            .then(pdfStats => setPdfStats(pdfStats))
-            .catch(err => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     fetch('http://localhost:8081/pdf-statistics')
+    //         .then(res => res.json())
+    //         .then(pdfStats => setPdfStats(pdfStats))
+    //         .catch(err => console.log(err));
+    // }, []);
 
-    //Get current posts
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPost = pdfStats
-        .sort((a, b) => {
-            return sortingType * a.title.localeCompare(b.title)
-        })
-        .slice(indexOfFirstPost, indexOfLastPost);
+    // //Get current posts
+    // const indexOfLastPost = currentPage * postsPerPage;
+    // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    // const currentPost = pdfStats
+    //     .sort((a, b) => {
+    //         return sortingType * a.title.localeCompare(b.title)
+    //     })
+    //     .slice(indexOfFirstPost, indexOfLastPost);
 
-    //Change page
-    const paginate = (pageNumber) => setCurrentpage(pageNumber);
-    const setPostCount = (postCount) => setPostsperpage(postCount);
-    const sorting = (type) => setSortingType(type)
+    // //Change page
+    // const paginate = (pageNumber) => setCurrentpage(pageNumber);
+    // const setPostCount = (postCount) => setPostsperpage(postCount);
+    // const sorting = (type) => setSortingType(type)
     return (
         <>
             <div class="tw-flex tw-bg-gray-50 tw-min-h-dvh">
@@ -50,7 +50,7 @@ export default function PDFMonitor() {
 
                         </thead>
 
-                        <tbody>
+                        {/* <tbody>
                             {currentPost.map((d, i) => (
                                 <tr key={i}>
                                     <th scope="row">{i + 1}</th>
@@ -59,10 +59,10 @@ export default function PDFMonitor() {
                                     <td>{d.download}</td>
                                 </tr>
                             ))}
-                        </tbody>
+                        </tbody> */}
                     </table>
 
-                    <Pagination postsPerPage={postsPerPage} setPostsPerPage={setPostCount} totalPosts={pdfStats.length} paginate={paginate} sortType={sortingType} setSortType={sorting} />
+                    {/* <Pagination postsPerPage={postsPerPage} setPostsPerPage={setPostCount} totalPosts={pdfStats.length} paginate={paginate} sortType={sortingType} setSortType={sorting} /> */}
                 </div>
             </div>
         </>

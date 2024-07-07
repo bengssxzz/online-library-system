@@ -4,27 +4,28 @@ const { useEffect, useState } = require("react")
 
 const AuthorizeUser = () => {
     const [isUser, setUser] = useState(false);
-
+    
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if (token) {
+        if (token)
+        {
 
-            fetch('https://online-library-system-api.onrender.com/authorizeUser', {
+            fetch('http://localhost:8081/authorizeUser', {  
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
 
-                body: JSON.stringify({ token: token })
+                body: JSON.stringify({token: token})
+            })  
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "Student"){
+                    setUser(true);
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === "Student") {
-                        setUser(true);
-                    }
-                })
-                .catch(err => console.log(err));
+            .catch(err => console.log(err));
         }
     }, [])
 
@@ -34,28 +35,29 @@ const AuthorizeUser = () => {
 
 const AuthorizeAdmin = () => {
     const [isAdmin, setAdmin] = useState(false);
-
+    
     useEffect(() => {
-        const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
 
-        if (token) {
-            fetch('https://online-library-system-api.onrender.com/authorizeAdmin', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ token: token })
+      if (token) {
+
+        fetch('http://localhost:8081/authorizeAdmin', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({token: token})
+            })  
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "Admin"){
+                    setAdmin(true);
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === "Admin") {
-                        setAdmin(true);
-                    }
-                })
-                .catch(err => console.log(err));
+            .catch(err => console.log(err));
         }
     }, [])
-
+    
     return isAdmin
 }
 
@@ -65,4 +67,4 @@ const Delete = () => {
 }
 
 
-export { AuthorizeUser, AuthorizeAdmin, Delete }
+export {AuthorizeUser, AuthorizeAdmin, Delete}

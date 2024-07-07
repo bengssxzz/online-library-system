@@ -147,6 +147,20 @@ export default function OTPModal({ otp, token, visible, onClose }) {
         }
     }
 
+    const handlePaste = (e) => {
+        const pasteData = e.clipboardData.getData('text');
+        const pasteArray = pasteData.split('').slice(0, 6);
+        
+        setOne(pasteArray[0] || '');
+        setTwo(pasteArray[1] || '');
+        setThree(pasteArray[2] || '');
+        setFour(pasteArray[3] || '');
+        setFive(pasteArray[4] || '');
+        setSix(pasteArray[5] || '');
+        
+        inputRefs.current[pasteArray.length - 1].focus();
+    }
+
     const handleKeyDown = (e, index) => {
         if (e.key === 'Backspace' && !e.target.value && index > 0) {
             inputRefs.current[index - 1].focus();
@@ -176,6 +190,7 @@ export default function OTPModal({ otp, token, visible, onClose }) {
                             maxLength="1"
                             value={[one, two, three, four, five, six][index]}
                             onChange={e => handleChange(e, index)}
+                            onPaste={handlePaste}
                             onKeyDown={e => handleKeyDown(e, index)}
                             ref={el => inputRefs.current[index] = el}
                         />
@@ -196,4 +211,4 @@ export default function OTPModal({ otp, token, visible, onClose }) {
         </div>
     )
 }
-
+    

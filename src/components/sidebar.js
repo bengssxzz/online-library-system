@@ -68,11 +68,11 @@ export default function Sidebar() {
                             <label class={`tw-cursor-pointer`}>Edit PDF</label>
                         </button>
 
-                        <button class={`${isActivePage('/admin-manage-categ') ? "tw-bg-slate-500" : ""} tw-text-left tw-text-lg tw-w-full tw-rounded-md tw-py-2 tw-border-none tw-bg-transparent tw-text-white hover:tw-bg-slate-500`}
+                        {/* <button class={`${isActivePage('/admin-manage-categ') ? "tw-bg-slate-500" : ""} tw-text-left tw-text-lg tw-w-full tw-rounded-md tw-py-2 tw-border-none tw-bg-transparent tw-text-white hover:tw-bg-slate-500`}
                             onClick={navToCateg}>
                             <i class={`tw-mr-2 bi bi-pencil-square tw-cursor-pointer`} />
                             <label class={`tw-cursor-pointer`}>Manage Category</label>
-                        </button>
+                        </button> */}
 
                         <button class={`${isActivePage('/admin-monitor') ? "tw-bg-slate-500" : ""} tw-text-left tw-text-lg tw-w-full tw-rounded-md tw-py-2 tw-border-none tw-bg-transparent tw-text-white hover:tw-bg-slate-500`}
                             onClick={navToMonitor}>

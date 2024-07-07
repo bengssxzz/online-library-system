@@ -16,7 +16,7 @@ export default function PDFManagement() {
 
     useEffect(() => {
 
-        fetch('https://online-library-system-api.onrender.com/all-categ', {
+        fetch('http://localhost:8081/all-categ', {
             method: "get",
             headers: {
                 "ngrok-skip-browser-warning": "89420",
@@ -62,7 +62,7 @@ export default function PDFManagement() {
 
     const deleteButton = (e, title) => {
         e.preventDefault();
-        fetch('https://online-library-system-api.onrender.com/delete-pdf', {
+        fetch('http://localhost:8081/delete-pdf', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export default function PDFManagement() {
             editButton();
             return;
         }
-        fetch('https://online-library-system-api.onrender.com/edit-pdf', {
+        fetch('http://localhost:8081/edit-pdf', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -138,7 +138,7 @@ export default function PDFManagement() {
                         <Searchbar />
                     </div>
 
-                    <div class="category table-striped table-responsive md:tw-w-full sm:tw-w-full tw-flex tw-items-center tw-flex-col">
+                    <div class="table-striped table-responsive md:tw-w-full sm:tw-w-full tw-flex tw-items-center tw-flex-col">
                         <table class="table table-striped tw-text-center">
                             <thead class="tw-text-center">
                                 <tr>
@@ -157,14 +157,17 @@ export default function PDFManagement() {
 
                                     <tr key={i}>
                                         <th scope="row">{i + 1}</th>
-                                        <td>{d.state
-                                            ? <input value={d.title} name="title" onChange={(e) => { editValue(e, i) }}></input>
+                                        <td class="tw-break-words tw-text-left tw-text-wrap tw-pl-4 tw-pr-3 tw-text-gray-900 sm:tw-pl-6 sm:tw-pt-4">{d.state
+                                            ? <input value={d.title} name="title" onChange={(e) => { editValue(e, i) }} class="tw-rounded-md tw-w-full tw-h-[40px] tw-border-none tw-outline-none tw-ring-1 tw-ring-gray-300 focus:tw-ring-gray-500 focus:tw-ring-1 tw-px-3 focus:tw-shadow-lg
+                                                focus:tw-duration-500 focus:tw-placeholder-transparent"></input>
                                             : <>{d.title}</>}</td>
                                         <td>{d.state
-                                            ? <input value={d.author} name="author" onChange={(e) => { editValue(e, i) }}></input>
+                                            ? <input value={d.author} name="author" onChange={(e) => { editValue(e, i) }} class="tw-rounded-md tw-w-full tw-h-[40px] tw-border-none tw-outline-none tw-ring-1 tw-ring-gray-300 focus:tw-ring-gray-500 focus:tw-ring-1 tw-px-3 focus:tw-shadow-lg
+                                                focus:tw-duration-500 focus:tw-placeholder-transparent"></input>
                                             : <>{d.author}</>}</td>
                                         <td>{d.state
-                                            ? <select name="category" value={d.category} onChange={(e) => { editValue(e, i) }}>
+                                            ? <select name="category" value={d.category} onChange={(e) => { editValue(e, i) }} class="tw-rounded-md tw-w-full tw-h-[40px] tw-border-none tw-outline-none tw-ring-1 tw-ring-gray-300 focus:tw-ring-gray-500 focus:tw-ring-1 tw-px-3 focus:tw-shadow-lg
+                                                focus:tw-duration-500 focus:tw-placeholder-transparent">
                                                 <option value="Mathematics">Mathematics</option>
                                                 <option value="Life Science">Life Science</option>
                                                 <option value="Robotics">Robotics</option>
@@ -173,7 +176,8 @@ export default function PDFManagement() {
                                             </select>
                                             : <>{d.category}</>}</td>
                                         <td>{d.state
-                                            ? <input value={d.year} name="year" onChange={(e) => { editValue(e, i) }}></input>
+                                            ? <input value={d.year} name="year" onChange={(e) => { editValue(e, i) }} class="tw-rounded-md tw-w-full tw-h-[40px] tw-border-none tw-outline-none tw-ring-1 tw-ring-gray-300 focus:tw-ring-gray-500 focus:tw-ring-1 tw-p-3 focus:tw-shadow-lg
+                                                focus:tw-duration-500 focus:tw-placeholder-transparent"></input>
                                             : <>{d.year}</>}</td>
                                         <td class="tw-w-[30px]">{d.state
                                             ? <button class="tw-bg-dark-blue tw-rounded-md tw-h-[40px] tw-px-4 tw-w-full tw-border-none tw-outline-none hover:tw-bg-light-steel tw-duration-100"

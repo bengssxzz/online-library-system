@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 import Pagination from "./Pagination";
+import { Link } from 'react-router-dom';
 
 export default function Category({ search, category }) {
     const [data, setData] = useState([]);
@@ -13,7 +14,7 @@ export default function Category({ search, category }) {
 
     useEffect(() => {
         if (search.length === 0) {
-            fetch('https://online-library-system-api.onrender.com/' + category, {
+            fetch('http://localhost:8081/' + category, {
                 method: "get",
             })
                 .then(res => res.json())
@@ -26,7 +27,7 @@ export default function Category({ search, category }) {
                 Search: search,
                 Categ: category,
             }
-            fetch('https://online-library-system-api.onrender.com/searchbar-category', {
+            fetch('http://localhost:8081/searchbar-category', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,9 +44,10 @@ export default function Category({ search, category }) {
 
     }, [search])
 
-    const ShowPDF = (pdfdestination, title) => {
+    const updStat = (pdfdestination, title) => {
 
-        fetch('https://online-library-system-api.onrender.com/viewAdd', {
+        console.log(pdfdestination);
+        fetch('http://localhost:8081/viewAdd', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -54,7 +56,7 @@ export default function Category({ search, category }) {
             body: JSON.stringify({ Title: title })
         });
 
-        window.open('https://online-library-system-api.onrender.com/uploads/' + pdfdestination, "_blank", "noreferrer");
+        // window.open('http://localhost:8081/uploads/' + pdfdestination);
     }
 
     // const DownloadPDF = (pdfdestination, title) => {
@@ -123,7 +125,10 @@ export default function Category({ search, category }) {
                         <tr key={i}>
                             {/* <th class="sm:tw-hidden tw-whitespace-nowrap tw-py-4 tw-pl-4 tw-pr-3 tw-text-gray-900">{indexOfFirstPost + 1 + i}</th> */}
                             <td class="tw-break-words tw-text-left tw-text-wrap tw-pl-4 tw-pr-3 tw-text-gray-900 sm:tw-pl-6 sm:tw-pt-4">
-                                {d.title}
+                                {/* {d.title} */}
+                                <Link to={`/pdfView/${d.destination}`} onClick={updStat}>
+                                    {d.title}
+                                </Link>
                                 <dl class="md:tw-hidden">
                                     <dt class="tw-sr-only">Category</dt>
                                     <dd class="tw-pt-2">{d.category}</dd>
@@ -134,17 +139,17 @@ export default function Category({ search, category }) {
                             <td class="sm:tw-hidden tw-whitespace-nowrap tw-py-4 tw-pl-4 tw-pr-3 tw-text-gray-900">{d.author}</td>
                             <td class="sm:tw-hidden tw-whitespace-nowrap tw-py-4 tw-pl-4 tw-pr-3 tw-text-gray-900">{d.category}</td>
                             <td class="sm:tw-hidden tw-whitespace-nowrap tw-py-4 tw-pl-4 tw-pr-3 tw-text-gray-900">{d.year}</td>
-                            <td class="tw-py-4  tw-pl-4 tw-pr-3 tw-justify-center">
+                            {/* <td class="tw-py-4  tw-pl-4 tw-pr-3 tw-justify-center">
                                 <button class=" tw-bg-btn-blue tw-border-none tw-mr-2 tw-outline-none hover:tw-bg-dark-steel tw-duration-500 tw-rounded-md"
-                                    onClick={() => ShowPDF(d.destination, d.title)}>
+                                    onClick={() => updStat(d.destination, d.title)}>
                                     <i class="bi bi-eye-fill tw-text-xl tw-text-text-blue"></i>
                                 </button>
-                            </td>
+                            </td> */}
                         </tr>
                     ))}
                 </tbody>
             </table>
-
+            
             <div class="tw-flex tw-justify-end tw-pt-5">
                 <Pagination postsPerPage={postsPerPage} setPostsPerPage={setPostCount} totalPosts={data.length} paginate={paginate} sortType={sortingType} setSortType={sorting} />
             </div>
